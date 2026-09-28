@@ -14,11 +14,15 @@ export function proxy(request: NextRequest) {
 
   const authorization = request.headers.get("authorization");
   if (authorization?.startsWith("Basic ")) {
-    const encoded = authorization.slice("Basic ".length);
-    const decoded = atob(encoded);
-    const separator = decoded.indexOf(":");
-    if (separator >= 0 && decoded.slice(0, separator) === username && decoded.slice(separator + 1) === password) {
-      return NextResponse.next();
+    try {
+      const encoded = authorization.slice("Basic ".length);
+      const decoded = atob(encoded);
+      const separator = decoded.indexOf(":");
+      if (separator >= 0 && decoded.slice(0, separator) === username && decoded.slice(separator + 1) === password) {
+        return NextResponse.next();
+      }
+    } catch {
+      // Treat malformed credentials as unauthorized instead of throwing a 500.
     }
   }
 
@@ -29,4 +33,3 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = { matcher: ["/ops/:path*"] };
-
