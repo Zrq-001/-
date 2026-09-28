@@ -1,0 +1,20 @@
+{
+  "version": "2026-09-26",
+  "city": "成都",
+  "targets": [
+    {
+      "id": "bytedance-campus-chengdu",
+      "companyId": "CD0040",
+      "adapter": "bytedance-public-ats",
+      "enabled": true,
+      "portalUrl": "https://jobs.bytedance.com/campus/position?keywords=%E6%88%90%E9%83%BD",
+      "allowedHosts": ["jobs.bytedance.com"],
+      "expectedPageText": ["字节跳动", "招聘"],
+      "scope": "成都",
+      "detailUrlTemplate": "https://jobs.bytedance.com/campus/position/{id}/detail",
+      "mode": "manual-review-required",
+      "requestLimit": 1,
+      "notes": "仅访问公开的校园招聘列表页一次。不会登录、翻页、提交表单、绕过验证码或尝试未公开接口。"
+    }
+  ]
+}

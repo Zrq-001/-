@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "Douyin Sans";
+  src: url("/fonts/DouyinSansBold.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #f8f5ef;
+  --foreground: #172319;
+  --card: #fffdfa;
+  --card-foreground: #172319;
+  --primary: #ee6145;
+  --primary-hover: #d94f35;
+  --primary-foreground: #ffffff;
+  --secondary: #e7f0d6;
+  --secondary-foreground: #1d402f;
+  --accent: #236b5a;
+  --accent-soft: #dceee8;
+  --muted: #f0ece4;
+  --muted-foreground: #6c7169;
+  --border: #dfd9cd;
+  --input: #dfd9cd;
+  --ring: #ee6145;
+  --radius: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "Avenir Next", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 8% -10%, rgba(255, 208, 99, .2), transparent 26rem),
+    radial-gradient(circle at 100% 22%, rgba(121, 190, 161, .13), transparent 30rem),
+    var(--background);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a { text-decoration: none; }
+button, input, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { color: white; background: var(--primary); }
+
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 60%, white); outline-offset: 3px; }
+
+.site-grid {
+  background-image: linear-gradient(rgba(23, 35, 25, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 35, 25, .045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.display-title, .company-entry-title, .brand-type, .button-type {
+  font-family: "Douyin Sans", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-weight: 800;
+  letter-spacing: -.055em;
+}
+.playful-label {
+  font-family: "Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: .77rem;
+  font-weight: 800;
+  letter-spacing: .035em;
+}
+.company-entry-title { text-wrap: balance; }
+.eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.paper-card { background: rgba(255, 253, 250, .9); border: 1px solid var(--border); box-shadow: 0 10px 34px rgba(47, 54, 39, .07); }
+.dashed-rule { border-top: 1px dashed #c9c1b4; }
+.marker-dot { position: relative; }
+.marker-dot::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-right: .45rem; border-radius: 999px; background: #ee6145; box-shadow: 0 0 0 4px #ffe4dc; vertical-align: .02em; }
+.squiggle { position: absolute; width: 13rem; height: 7rem; border: 2px solid rgba(35, 107, 90, .24); border-radius: 52% 48% 46% 54% / 48% 56% 44% 52%; transform: rotate(-13deg); }
+
+@keyframes float-up { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+@keyframes marker-bloom { 0%,100% { box-shadow: 0 0 0 0 rgba(238, 97, 69, .22); } 60% { box-shadow: 0 0 0 13px rgba(238, 97, 69, 0); } }
+.float-card { animation: float-up 5s ease-in-out infinite; }
+.signal-pulse { animation: marker-bloom 2.7s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+
+
+

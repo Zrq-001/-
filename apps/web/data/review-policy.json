@@ -1,0 +1,97 @@
+{
+  "version": "2026-09-26",
+  "city": "成都",
+  "default": {
+    "cadenceDays": 30,
+    "reviewMode": "manual_first",
+    "automationCandidate": false,
+    "checklist": [
+      "确认来源仍归属于企业或集团官方渠道",
+      "确认页面可访问，并记录跳转或加载异常",
+      "确认成都关联与招聘状态没有被过度推断",
+      "更新验证日期、证据链接和人工备注"
+    ]
+  },
+  "tiers": {
+    "official_ats": {
+      "cadenceDays": 7,
+      "reviewMode": "automation_candidate",
+      "automationCandidate": true,
+      "checklist": [
+        "检查职位列表是否可读取及职位数量变化",
+        "检查成都筛选、职位详情和投递链接",
+        "出现结构变化或登录墙时转人工复核"
+      ]
+    },
+    "official_company": {
+      "cadenceDays": 14,
+      "reviewMode": "automation_candidate",
+      "automationCandidate": true,
+      "checklist": [
+        "检查招聘页、招聘邮箱或投递表单是否仍有效",
+        "只在页面能证明时更新当前招聘状态",
+        "结构变化、验证码或动态渲染失败时转人工复核"
+      ]
+    },
+    "group_career_site": {
+      "cadenceDays": 14,
+      "reviewMode": "automation_candidate",
+      "automationCandidate": true,
+      "checklist": [
+        "检查集团招聘入口是否仍支持成都或关联业务线",
+        "确认页面不只展示其他城市岗位",
+        "记录分站、事业部或岗位库链接变化"
+      ]
+    },
+    "official_wechat": {
+      "cadenceDays": 7,
+      "reviewMode": "manual_first",
+      "automationCandidate": false,
+      "checklist": [
+        "确认公众号、小程序或公开投递说明仍可被求职者找到",
+        "补充可公开访问的入口链接；不能补充时保留明确人工投递说明",
+        "不要把无法访问的微信线索展示成一键直达职位"
+      ]
+    },
+    "official_announcement": {
+      "cadenceDays": 21,
+      "reviewMode": "manual_first",
+      "automationCandidate": false,
+      "checklist": [
+        "确认公告发布日期、截止日期和投递方式",
+        "过期公告改为历史线索或待复核，不显示为当前可投",
+        "保留公告原链接作为证据"
+      ]
+    },
+    "third_party_lead": {
+      "cadenceDays": 30,
+      "reviewMode": "manual_first",
+      "automationCandidate": false,
+      "checklist": [
+        "优先寻找企业官网、ATS 或官方账号来替代第三方线索",
+        "未完成官方归属验证前，继续标注为第三方线索",
+        "确认第三方链接是否仍可访问"
+      ]
+    },
+    "search_evidence_only": {
+      "cadenceDays": 30,
+      "reviewMode": "manual_first",
+      "automationCandidate": false,
+      "checklist": [
+        "通过官网或可证明归属的官方页面补足招聘入口",
+        "搜索结果本身不能作为官方投递入口",
+        "无法补证时保留待核验状态"
+      ]
+    },
+    "unknown": {
+      "cadenceDays": 30,
+      "reviewMode": "manual_first",
+      "automationCandidate": false,
+      "checklist": [
+        "先判断来源归属，再决定是否在前台展示",
+        "没有足够证据时不得升级为官方来源",
+        "记录下一次可复核的线索"
+      ]
+    }
+  }
+}

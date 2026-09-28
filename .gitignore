@@ -1,0 +1,32 @@
+# Local development artifacts
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+**/out/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+**/.env.local
+.vercel/
+coverage/
+
+# Generated operational reports and scan output
+apps/web/data/generated/
+
+# Temporary scripts, exports, and previews created during local research
+cross_tab.py
+find_v12_rows.py
+inspect_*.py
+integrate_shadcn.py
+patch_*.py
+patch_*.mjs
+render_*.mjs
+validate_v12.py
+*.png
+
+# Local dev logs
+*.log
+
