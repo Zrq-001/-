@@ -4,8 +4,12 @@ import type { NextRequest } from "next/server";
 export function proxy(request: NextRequest) {
   const username = process.env.OPS_USER;
   const password = process.env.OPS_PASSWORD;
+  const isDeployed = Boolean(process.env.VERCEL_ENV);
 
-  // Local development remains frictionless. Set both variables before exposing the site publicly.
+  // Local development remains frictionless; deployed ops routes fail closed until credentials exist.
+  if (isDeployed && (!username || !password)) {
+    return new NextResponse("运营页面尚未配置访问权限。", { status: 503 });
+  }
   if (!username || !password) return NextResponse.next();
 
   const authorization = request.headers.get("authorization");
