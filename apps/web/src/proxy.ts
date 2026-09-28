@@ -13,17 +13,14 @@ export function proxy(request: NextRequest) {
   if (!username || !password) return NextResponse.next();
 
   const authorization = request.headers.get("authorization");
-  if (authorization?.startsWith("Basic ")) {
-    try {
-      const encoded = authorization.slice("Basic ".length);
-      const decoded = atob(encoded);
-      const separator = decoded.indexOf(":");
-      if (separator >= 0 && decoded.slice(0, separator) === username && decoded.slice(separator + 1) === password) {
-        return NextResponse.next();
-      }
-    } catch {
-      // Treat malformed credentials as unauthorized instead of throwing a 500.
-    }
+  let expectedAuthorization = "";
+  try {
+    expectedAuthorization = `Basic ${btoa(`${username}:${password}`)}`;
+  } catch {
+    expectedAuthorization = "";
+  }
+  if (authorization && expectedAuthorization && authorization === expectedAuthorization) {
+    return NextResponse.next();
   }
 
   return new NextResponse("需要运营访问权限。", {
