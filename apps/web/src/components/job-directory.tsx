@@ -103,7 +103,7 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
 
   const visibleJobs = jobs.slice(0, visibleCount);
 
-  const hasFilters = Boolean(query) || functionName !== "全部职能" || recruitmentType !== "全部招聘类型" || directOnly || officialOnly;
+  const hasFilters = Boolean(query) || functionName !== "全部职能" || recruitmentType !== "全部招聘类型" || directOnly || officialOnly || sortOrder !== "priority";
   const reset = () => { setQuery(""); setFunctionName("全部职能"); setRecruitmentType("全部招聘类型"); setDirectOnly(false); setOfficialOnly(false); setSortOrder("priority"); setSearchOpen(false); };
   const chooseSuggestion = (value: string) => { setQuery(value); setSearchOpen(false); };
 
@@ -115,7 +115,7 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
             <label className="relative block">
               <span className="sr-only">搜索职位或企业</span>
               <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-[#ee6145]" />
-              <input ref={searchInputRef} aria-keyshortcuts="/" value={query} onFocus={() => setSearchOpen(true)} onKeyDown={(event) => { if (event.key === "Escape") setSearchOpen(false); }} onChange={(event) => { setQuery(event.target.value); setSearchOpen(true); }} placeholder="搜索岗位、企业或行业，例如：前端、游戏、AI" className="min-h-13 w-full rounded-2xl border border-[#ded8cd] bg-[#fcfaf6] py-2 pl-12 pr-4 text-[16px] font-medium text-[#172319] outline-none transition focus:border-[#ee6145] focus:ring-4 focus:ring-[#ffe4dc]" />
+              <input ref={searchInputRef} aria-keyshortcuts="/" aria-autocomplete="list" value={query} onFocus={() => setSearchOpen(true)} onKeyDown={(event) => { if (event.key === "Escape") setSearchOpen(false); }} onChange={(event) => { setQuery(event.target.value); setSearchOpen(true); }} placeholder="搜索岗位、企业或行业，例如：前端、游戏、AI" className="min-h-13 w-full rounded-2xl border border-[#ded8cd] bg-[#fcfaf6] py-2 pl-12 pr-4 text-[16px] font-medium text-[#172319] outline-none transition focus:border-[#ee6145] focus:ring-4 focus:ring-[#ffe4dc]" />
             </label>
             {searchOpen && suggestions.length > 0 && <div id="job-search-suggestions" role="listbox" aria-label="搜索建议" className="absolute z-20 mt-2 w-full overflow-hidden rounded-2xl border border-[#ded8cd] bg-[#fffdfa] p-1.5 shadow-[0_12px_30px_rgba(46,51,38,.14)]">
               <p className="px-3 pb-1 pt-1.5 text-xs font-bold text-[#788174]">试试这些匹配项</p>
@@ -132,13 +132,13 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
           <label className="sr-only" htmlFor="job-sort">排序方式</label><div className="relative"><ArrowDownUp className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#236b5a]" /><select id="job-sort" value={sortOrder} onChange={(event) => setSortOrder(event.target.value)} className="min-h-13 w-full appearance-none rounded-2xl border border-[#ded8cd] bg-[#fcfaf6] pl-10 pr-8 text-sm font-bold text-[#425244] outline-none focus:border-[#ee6145] focus:ring-4 focus:ring-[#ffe4dc]"><option value="priority">官方直达优先</option><option value="recent">最近核验</option><option value="company">按企业名称</option><option value="title">按职位名称</option></select></div>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-[#ded8cd] pt-4">
-          <div className="flex flex-wrap items-center gap-2"><span className="text-sm font-bold text-[#6c7169]">快速筛选：</span>{popularFunctions.map((item) => <button type="button" key={item} onClick={() => setFunctionName(functionName === item ? "全部职能" : item)} className={`rounded-full px-3 py-1.5 text-xs font-extrabold transition ${functionName === item ? "bg-[#e4f1e8] text-[#236b5a]" : "bg-[#f0ece4] text-[#657064] hover:bg-[#e7f0d6]"}`}>{functionName === item && <Check className="mr-1 inline size-3.5" />}{item}</button>)}<button type="button" onClick={() => setOfficialOnly((current) => !current)} aria-pressed={officialOnly} className={`inline-flex min-h-8 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-extrabold transition ${officialOnly ? "bg-[#236b5a] text-white" : "bg-[#eef3ed] text-[#42604d] hover:bg-[#dceee8]"}`}><ShieldCheck className="size-3.5" />官方来源优先</button></div>
+          <div className="flex flex-wrap items-center gap-2"><span className="text-sm font-bold text-[#6c7169]">快速筛选：</span>{popularFunctions.map((item) => <button type="button" key={item} onClick={() => setFunctionName(functionName === item ? "全部职能" : item)} className={`rounded-full px-3 py-1.5 text-xs font-extrabold transition ${functionName === item ? "bg-[#e4f1e8] text-[#236b5a]" : "bg-[#f0ece4] text-[#657064] hover:bg-[#e7f0d6]"}`}>{functionName === item && <Check className="mr-1 inline size-3.5" />}{item}</button>)}<button type="button" onClick={() => setOfficialOnly((current) => !current)} aria-pressed={officialOnly} className={`inline-flex min-h-8 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-extrabold transition ${officialOnly ? "bg-[#236b5a] text-white" : "bg-[#eef3ed] text-[#42604d] hover:bg-[#dceee8]"}`}><ShieldCheck className="size-3.5" />只看官方来源</button></div>
           <CopyLinkButton />{hasFilters && <button type="button" onClick={reset} className="inline-flex min-h-9 items-center gap-1.5 rounded-full px-3 text-sm font-bold text-[#c94a34] hover:bg-[#fff0ec]"><X className="size-4" />清空条件</button>}
         </div>
       </div>
 
       <div className="mt-7 flex flex-col justify-between gap-4 border-b border-[#ded8cd] pb-4 sm:flex-row sm:items-end">
-        <div><p className="eyebrow text-[#ee6145]">RESULTS</p><h2 className="company-entry-title mt-1 text-2xl text-[#172319]">{query.trim() ? <><mark className="rounded bg-[#ffe3a3] px-1 text-inherit">{query.trim()}</mark> 相关的 {jobs.length} 条线索</> : `找到 ${jobs.length} 条线索`}</h2></div>
+        <div aria-live="polite"><p className="eyebrow text-[#ee6145]">RESULTS</p><h2 className="company-entry-title mt-1 text-2xl text-[#172319]">{query.trim() ? <><mark className="rounded bg-[#ffe3a3] px-1 text-inherit">{query.trim()}</mark> 相关的 {jobs.length} 条线索</> : `找到 ${jobs.length} 条线索`}</h2></div>
         <p className="max-w-md text-sm leading-6 text-[#6c7169]"><ShieldCheck className="mr-1 inline size-4 text-[#236b5a]" />优先展示官方招聘入口或可直达职位页；每条都保留来源和最近核验日期。</p>
       </div>
 
