@@ -25,7 +25,7 @@ export function proxy(request: NextRequest) {
 
   return new NextResponse("需要运营访问权限。", {
     status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="蓉小招运营工具", charset="UTF-8"' },
+    headers: { "WWW-Authenticate": 'Basic realm="Rong Xiao Zhao Ops"' },
   });
 }
 
