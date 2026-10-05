@@ -1,4 +1,4 @@
-const canonicalProductionUrl = "https://rongxiaozhao.cn";
+const canonicalProductionUrl = "https://www.rongxiaozhao.cn";
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const vercelSiteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 
