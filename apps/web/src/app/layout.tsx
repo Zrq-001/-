@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   keywords: ["成都招聘", "企业官网招聘", "官方招聘入口", "成都求职", "蓉小招"],
   openGraph: { type: "website", locale: "zh_CN", siteName: "蓉小招", title: "蓉小招｜成都企业招聘入口查询", description: "查企业官网、官方招聘系统和可核验的职位线索。" },
   twitter: { card: "summary", title: "蓉小招｜成都企业招聘入口查询", description: "查企业官网、官方招聘系统和可核验的职位线索。" },
+  other: { "baidu-site-verification": "codeva-iaiR1Heudc" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
