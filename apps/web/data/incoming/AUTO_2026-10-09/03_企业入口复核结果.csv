@@ -1,0 +1,61 @@
+﻿company_id,企业名称,招聘入口URL,入口复核状态,入口页面标题,官网状态,结论,需人工复测
+CD0001,埃森哲（中国）有限公司成都分公司,https://www.accenture.cn/cn-zh/careers/local/accenture-china-campus-page,valid,与埃森哲一起重塑 | 埃森哲（2027校园招聘启动）,valid,招聘入口正常打开，为埃森哲2027校园招聘页面。,否
+CD0002,思特沃克软件技术（成都）有限公司,https://www.thoughtworks.com/careers/jobs,valid,Search jobs | Thoughtworks（36个在招职位）,valid,招聘入口正常打开，为ThoughtWorks职位搜索页（36个在招职位）。,否
+CD0003,成都四方伟业软件股份有限公司,https://www.sefonsoft.com/about/recruit,valid,四方伟业招聘页（含大模型算法工程师等校招职位）,valid,招聘入口正常，页面含多个校招职位及联系方式。,否
+CD0004,成都数之联科技股份有限公司,https://unionbigdata.zhiye.com/,connection_failed,（未能获取页面内容）,connection_failed,招聘入口(智业网子站)WebFetch未能连接/返回空内容，需人工复测；官网同为该子站，亦未能连接。,是
+CD0005,成都迈克生物股份有限公司,https://maccura.zhiye.com/jobs,connection_failed,（未能获取页面内容）,valid,招聘入口(智业网)未能打开，官网(www.maccura.com)可正常访问，建议更新招聘入口链接。,是
+CD0006,德州仪器半导体制造（成都）有限公司,https://careers.ti.com/,valid,Texas Instruments（TI职业站点）,valid,招聘入口正常打开，为TI职业站点。,否
+CD0007,成都仕芯半导体有限公司,https://www.sicoresemi.com/News_Show.php?theId=705,valid,模拟ic设计师-仕芯半导体（招聘职位页）,valid,招聘入口正常，为具体职位招聘页。,否
+CD0008,成都锐成芯微科技股份有限公司,https://analogcircuit.cn/recruit/800.html,valid,锐成芯微 Actt——存储器设计工程师（招聘页）,valid,招聘入口正常，为具体职位招聘页。,否
+CD0009,海光信息技术股份有限公司（成都研发中心/成都分部）,https://app.mokahr.com/m/campus-recruitment/hygon/,valid,海光信息校园招聘（mokahr招聘系统）,valid,招聘入口正常，为海光校园招聘页。,否
+CD0010,英特尔产品（成都）有限公司,https://chinacampus.jobs.intel.cn/,valid,校园招聘-Intel Careers（英特尔中国2026校招）,valid,招聘入口正常，为英特尔中国校园招聘页。,否
+CD0011,成都艾尔平方文化传播有限公司,http://www.luheli.com/about.php?id=9,connection_failed,（未能获取页面内容）,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,是
+CD0012,成都光明光电股份有限公司,https://www.cdgmgd.com/templates/www.cdgmgd.com/zh_CN/pc/tempmsg/recruitment.htm,valid,成都光明光电股份有限公司招聘（含岗位需求）,valid,招聘入口正常，为光明光电招聘页含岗位需求。,否
+CD0013,成都圭目机器人有限公司,https://www.gm-robot.com/newsinfo/7885839.html,valid,圭目机器人销售岗招募令（招聘新闻页）,valid,招聘入口正常，为圭目机器人招聘新闻页。,否
+CD0014,成都纵横自动化技术股份有限公司,https://www.jouav.com/zh/career,valid,招贤纳士 - 纵横股份（招聘页）,valid,招聘入口正常，为纵横股份招聘页。,否
+CD0015,成都蜀道装备科技股份有限公司,https://shudaozb.com/zhaopinxinxi/,valid,招聘信息 - 蜀道装备科技股份有限公司,valid,招聘入口正常，为蜀道装备招聘信息页。,否
+CD0016,成都卓杭网络科技股份有限公司,https://www.dhgames.cn,valid,成都卓杭网络科技股份有限公司 - 首页（含加入卓杭）,valid,入口为官网首页，含“加入卓杭”招聘板块，正常。,否
+CD0017,成都创人所爱科技股份有限公司,https://campus.tap4fun.com,valid,tap4fun校园招聘（含策划/程序/美术等职位）,valid,招聘入口正常，为tap4fun校园招聘页含岗位。,否
+CD0018,成都数字天空科技有限公司,https://www.digisky.com/joinUs,valid,DIGISKY - 社会招聘（含技术/美术/策划类）,valid,招聘入口正常，为数字天空社会招聘页。,否
+CD0019,成都西山居互动娱乐科技有限公司,https://hr.xishanju.com,valid,西山居招聘（含美术/策划/程序等职位）,valid,招聘入口正常，为西山居招聘页含职位。,否
+CD0020,成都迅游网络科技股份有限公司,https://www.xunyou.com/2014hr/position.shtml,valid,职位详情 迅游招聘（含运维/测试/C++等职位）,valid,招聘入口正常，为迅游招聘职位列表页。,否
+CD0021,成都雨墨科技有限公司,http://www.yumoon.cn,changed,"activation system connection is OK, thank you for testing.",valid,入口与官网均返回“activation system connection is OK”系统提示页，已非招聘/企业内容，疑似站点失效或被替换，需人工确认。,是
+CD0022,成都龙渊网络科技有限公司,https://www.ilongyuan.com.cn/index/campusrecruit.html,valid,校园招聘 - 龙渊网络（含原画等职位）,valid,招聘入口正常，为龙渊网络校园招聘页含职位。,否
+CD0023,四川科伦博泰生物医药股份有限公司,https://kelunbotai.zhiye.com/campus/,valid,科伦博泰招聘系统--校园招聘（含在招职位）,valid,招聘入口正常，为科伦博泰校园招聘系统含在招职位。,否
+CD0024,四川科伦药业股份有限公司（成都）,https://kelun.zhiye.com/social/,valid,四川科伦药业招聘系统--社会招聘（含职位）,valid,招聘入口正常，为科伦药业社会招聘系统含职位。,否
+CD0025,成都倍特药业股份有限公司,https://btyy.zhiye.com/social/jobs,connection_failed,（未能获取页面内容）,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,是
+CD0026,成都康弘药业集团股份有限公司,https://kanghong.zhiye.com/campus/jobs,connection_failed,（未能获取页面内容）,valid,招聘入口(智业网)未能打开，官网(www.cnkh.com)可访问且含招聘栏目，建议更新招聘入口。,是
+CD0027,成都欧林生物科技股份有限公司,https://www.olymvax.com/talent.aspx?t=24,valid,人力资源 - 欧林生物（含R&D等岗位）,valid,招聘入口正常，为欧林生物招聘页含岗位。,否
+CD0028,成都海创药业股份有限公司,https://www.hinovapharma.com/recruit/index.html,valid,职业机会 - 海创药业股份有限公司（含职位）,valid,招聘入口正常，为海创药业职业机会页含职位。,否
+CD0029,成都迪康药业股份有限公司,https://www.dikangyaoye.com/shehuizhaopin,valid,社会招聘 - 成都迪康药业股份有限公司（含职位）,valid,招聘入口正常，为迪康药业社会招聘页含职位。,否
+CD0030,成都京东方光电科技有限公司,https://m.boe.com/join/index,valid,加入我们-京东方官网（含校招/社招）,valid,招聘入口正常，为京东方加入我们页含校招/社招。,否
+CD0031,成都国光电气股份有限公司,https://chinaguoguang.com/go-c97.htm,valid,成都国光电气股份有限公司-人才招聘（含岗位）,valid,招聘入口正常，为国光电气人才招聘页含岗位。,否
+CD0032,成都天马微电子有限公司,https://campus.tianma.cn/,connection_failed,（未能获取页面内容）,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,是
+CD0033,成都旭光电子股份有限公司,https://www.xuguang.com.cn/jobL,valid,成都旭光电子股份有限公司-人才招聘,valid,招聘入口正常，为旭光电子人才招聘页。,否
+CD0034,捷普科技（成都）有限公司,https://careers.jabil.com/,valid,Career Possibilities at Jabil | Jabil Careers,valid,招聘入口正常，为捷普职业站点含Search Jobs。,否
+CD0035,鸿富锦精密电子（成都）有限公司,https://www.51pin.foxconn.com/,valid,我要聘-富士康招募网,valid,招聘入口正常，为富士康招募网。,否
+CD0036,中航（成都）无人机系统股份有限公司,https://avicuas.zhiye.com/,valid,中航（成都）无人机系统股份有限公司招聘系统,valid,招聘入口正常，为中航无人机招聘系统含热招职位。,否
+CD0037,成都爱乐达航空设备制造股份有限公司,https://www.cdald.com/hr-culture.aspx?t=14,valid,人力资源 - 爱乐达（含机械工程师等岗位）,valid,招聘入口正常，为爱乐达人力资源页含岗位。,否
+CD0038,北京三快在线科技有限公司成都分公司,https://zhaopin.meituan.com/,valid,首页 | 美团招聘（含社招/校招）,valid,招聘入口正常，为美团招聘首页含社招/校招。,否
+CD0039,北京京东世纪贸易有限公司成都分公司,https://zhaopin.jd.com/,valid,京东招聘-首页（含热招职位）,valid,招聘入口正常，为京东招聘首页含热招职位。,否
+CD0040,北京字节跳动科技有限公司成都分公司,https://jobs.bytedance.com/,valid,字节跳动招聘官网｜字节跳动社招,valid,招聘入口正常，为字节跳动招聘官网。,否
+CD0041,四川久远银海软件股份有限公司,https://www.yinhai.com/pc/ycjh_1702523841087/index.html,valid,英才计划 - 久远银海（含高管岗位）,valid,招聘入口正常，为久远银海英才计划招聘页。,否
+CD0042,思爱普（中国）有限公司成都分公司,https://jobs.sap.com/,valid,Build a future at SAP | SAP Careers,valid,招聘入口正常，为SAP职业站点。,否
+CD0043,成都云智天下科技股份有限公司,https://yunzhicloud.com/web-aboutyz/joinus/hiring,valid,人才招聘 - 云智天下（含商务经理等职位）,valid,招聘入口正常，为云智天下人才招聘页含职位。,否
+CD0044,滴滴出行科技有限公司成都分公司,https://talent.didiglobal.com/,connection_failed,（未能获取页面内容）,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,是
+CD0045,腾讯科技（成都）有限公司,https://careers.tencent.com/,valid,首页 | 腾讯招聘（含技术/产品等职位）,valid,招聘入口正常，为腾讯招聘首页。,否
+CD0046,阿里巴巴（中国）有限公司成都分公司,https://campus-talent.alibaba.com/,valid,阿里巴巴校园招聘（含算法/研发等）,valid,招聘入口正常，为阿里巴巴校园招聘页。,否
+CD0047,中兴通讯股份有限公司成都分公司,http://job.zte.com.cn/,valid,中兴通讯招聘（含校招/社招职位）,valid,招聘入口正常，为中兴通讯招聘页含校招/社招职位。,否
+CD0048,华为技术有限公司成都研究所,https://career.huawei.com/,valid,华为招聘官网首页,valid,招聘入口正常，为华为招聘官网首页。,否
+CD0049,成都优博创通信技术股份有限公司,https://www.superxon.cn/jrwm,valid,成都优博创通信技术有限公司-加入我们（含职位）,valid,招聘入口正常，为优博创加入我们页含职位。,否
+CD0050,成都华日通讯技术股份有限公司,http://www.cdhuari.com/job-detail.html?id=10022,valid,华日通讯 - 招贤纳士（含硬件工程师等）,valid,招聘入口正常，为华日通讯招贤纳士页含岗位。,否
+CD0052,成都新易盛通信科技股份有限公司,https://eoptolink.zhiye.com/campus/jobs,connection_failed,（未能获取页面内容）,valid,招聘入口(智业网)未能打开，官网招聘栏目(www.eoptolink.com/about-us/careers)可正常访问，建议更新招聘入口。,是
+CD0053,中软国际科技服务有限公司成都分公司,http://zhaopin.chinasoftinc.com,valid,中软国际招聘官网（含社会招聘搜索）,valid,招聘入口正常，为中软国际招聘官网含社招搜索。,否
+CD0054,成都博彦软件技术有限公司,https://www.beyondsoft.com/joinus/employ-enroll.html,dead,Page not found - Beyondsoft Consulting Inc（404）,valid,招聘入口页面返回404(Not Found)，原链接已失效；官网可访问，建议更新至正确招聘页。,是
+CD0055,软通动力信息技术（集团）股份有限公司成都分公司,https://www.isoftstone.com/zh-cn/htmls/campusRecruitment/index.html,valid,校园招聘-isoftstone软通动力（含校招职位）,valid,招聘入口正常，为软通动力校园招聘页。,否
+CD0056,云从科技（成都）,http://jobs.cloudwalk.com/,connection_failed,403 Forbidden（jobs.cloudwalk.com 访问被拒）,valid,招聘入口返回403 Forbidden，访问被拒/需权限，需人工复测；官网(www.cloudwalk.com)可正常访问。,是
+CD0057,成都振芯科技股份有限公司,http://www.corpro.cn/,connection_failed,（未能获取页面内容）,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,是
+CD0058,成都海威华芯科技有限公司,http://hiwafer.com/company-news/184.html,dead,404 Not Found（hiwafer.com/company-news/184.html）,valid,招聘入口(具体新闻页)返回404已失效；官网可访问但显示登录页，疑似站点变更，需人工确认官网招聘栏目。,是
+CD0059,成都可可豆动画影视有限公司,http://cocoaniworks.net/?p=6,connection_failed,（未能获取页面内容）,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,是
+CD0060,成都索贝数码科技股份有限公司,https://sobey.zhiye.com,changed,企业已暂停招聘（sobey.zhiye.com）,valid,招聘入口可打开但显示“企业已暂停招聘”，招聘通道暂停；官网(www.sobey.com)可正常访问。,是
+CD0062,天齐锂业股份有限公司,https://tianqilithium.zhiye.com,dead,Not Found - 页面已经被移走（tianqilithium.zhiye.com）,valid,招聘入口返回"页面已经被移走"错误，招聘子站已不存在；官网(www.tianqilithium.com)可正常访问。用户2026-10-09确认失效，建议从正式数据移除。,否

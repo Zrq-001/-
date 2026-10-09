@@ -6,8 +6,8 @@
 
 ```text
 data/source/                         # 人工复核后的原始输入；提交前保留
-  成都企业池_V1.3.csv
-  成都职位样本_V1.3.csv
+  成都企业池_V1.6.csv
+  成都职位样本_V1.6.csv
 scripts/import-v12.mjs               # 将 CSV 转为前端使用的目录数据
 scripts/validate-catalog.mjs         # 发布前的数据质量检查
 src/data/catalog.json                # 自动生成，网站实际读取
@@ -20,19 +20,12 @@ src/data/catalog.json                # 自动生成，网站实际读取
 在 `apps/web` 目录执行：
 
 ```powershell
-pnpm data:verify
-pnpm lint
-pnpm build
+pnpm release:check:v16
 ```
 
-`pnpm data:verify` 会依次：
+该流程会按 WorkBuddy 原始输出生成两份 V1.6 源 CSV，重建 `src/data/catalog.json`，执行数据质量检查、维护健康报告、lint 与生产构建。源数据表是正式记录，`catalog.json` 只由导入器生成，禁止直接手改。
 
-1. 读取两份 CSV，生成 `src/data/catalog.json`；
-2. 检查 CSV 表头、必填 ID、重复记录、企业—岗位关联、日期和 URL 格式；
-3. 检查「官方有效」企业是否有可访问招聘入口（缺失时提示人工复核）、可直达职位是否有合法跳转链接；
-4. 检查目录统计数与源数据是否一致。
-
-带 `⚠` 的项目不会阻止发布，但必须人工复核；带 `✖` 的项目会阻止发布。
+`pnpm data:verify:v16` 可在源 CSV 已准备好后单独重新导入、校验并生成复核排期。
 
 ## 发布前人工核验清单
 
@@ -46,7 +39,7 @@ pnpm build
 
 ## 当前版本边界
 
-V1.3 只支持 CSV 重新导入，不会自动抓取或自动关闭岗位。后续接数据库后，源表会扩展为：招聘来源记录、采集运行日志、职位快照、状态历史和人工复核队列；其中 ATS 来源优先自动适配，其余来源默认进入人工复核。
+V1.6 仍使用人工复核后的 CSV 静态目录，不会自动抓取或自动关闭岗位。WorkBuddy 输出保存在 `data/incoming/AUTO_2026-10-09`，经保守筛选后才并入正式 CSV。
 ## 数据健康报告
 
 每次数据导入后，可以生成一份只读的维护提醒：
@@ -57,7 +50,7 @@ pnpm data:health
 pnpm data:health -- --as-of=2026-09-27
 ```
 
-报告写入 `data/generated/data-health.json`，会列出验证逾期、即将到期、官方入口缺失、直达职位缺链接和缺验证日期的记录。它只是维护提示，**不等于职位关闭判断**，也不会改写 CSV 或前台目录。确认官方页面后，仍按人工复核流程修改源 CSV，再运行 `pnpm data:verify`。
+报告写入 `data/generated/data-health.json`，会列出验证逾期、即将到期、官方入口缺失、直达职位缺链接和缺验证日期的记录。它只是维护提示，**不等于职位关闭判断**，也不会改写 CSV 或前台目录。确认官方页面后，仍按人工复核流程修改源 CSV，再运行 `pnpm data:verify:v16`。
 
 ## 招聘来源复核机制
 

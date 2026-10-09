@@ -54,7 +54,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ compan
             <div className="relative flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-white/12 px-3 py-1 text-xs font-extrabold text-[#ecf8e8]">{company.grade}级企业</span>
+                  <span className="rounded-full bg-white/12 px-3 py-1 text-xs font-extrabold text-[#ecf8e8]">{company.grade ? `${company.grade}级企业` : "企业档案"}</span>
                   <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-extrabold ${company.isOfficial ? "bg-[#dceee8] text-[#236b5a]" : "bg-[#fff0df] text-[#9b531f]"}`}>
                     {company.isOfficial ? <ShieldCheck className="size-3.5" /> : <CircleAlert className="size-3.5" />}{sourceLabel}
                   </span>
@@ -97,7 +97,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ compan
         <section id="job-samples" className="mt-10 scroll-mt-24">
           <div className="flex items-end justify-between gap-4"><div><p className="eyebrow text-[#ee6145]">JOB SAMPLES</p><h2 className="company-entry-title mt-1 text-3xl text-[#172319]">这个公司已收录 {companyJobs.length} 条职位样本</h2></div>{companyJobs.length > 0 && <Link href={`/jobs?q=${encodeURIComponent(company.name)}`} className="hidden min-h-10 items-center rounded-full bg-[#e7f0d6] px-4 text-sm font-extrabold text-[#236b5a] sm:inline-flex">在职位里继续看</Link>}</div>
           <div className="mt-5 grid gap-3">
-            {companyJobs.map((job) => <article key={job.key} className="flex flex-col justify-between gap-4 rounded-[22px] border border-[#ded8cd] bg-[#fffdfa] p-5 sm:flex-row sm:items-center"><div><div className="flex gap-2"><span className={`rounded-full px-2.5 py-1 text-xs font-extrabold ${job.isDirectDetail ? "bg-[#fff0c9] text-[#8b5b09]" : "bg-[#dceee8] text-[#236b5a]"}`}>{job.isDirectDetail ? "直达职位详情" : "官方职位列表"}</span></div><h3 className="company-entry-title mt-2 text-xl text-[#172319]"><Link className="hover:text-[#ee6145]" href={`/jobs/${encodeURIComponent(job.key)}`}>{job.title}</Link></h3><p className="mt-1 text-sm text-[#657064]">{job.location || "成都"} · {job.function || "职能待补充"} · {job.recruitmentType || "招聘类型待补充"}</p></div><Link href={`/jobs/${encodeURIComponent(job.key)}`} className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#ded8cd] px-4 text-sm font-extrabold text-[#236b5a] hover:border-[#236b5a]">查看线索</Link></article>)}
+            {companyJobs.map((job) => <article key={job.key} className="flex flex-col justify-between gap-4 rounded-[22px] border border-[#ded8cd] bg-[#fffdfa] p-5 sm:flex-row sm:items-center"><div><div className="flex gap-2"><span className={`rounded-full px-2.5 py-1 text-xs font-extrabold ${job.isDirectDetail ? "bg-[#fff0c9] text-[#8b5b09]" : "bg-[#dceee8] text-[#236b5a]"}`}>{job.isDirectDetail ? (job.isOfficial ? "直达职位详情" : "直达线索详情") : job.isOfficial ? "官方职位列表" : "来源待核验"}</span></div><h3 className="company-entry-title mt-2 text-xl text-[#172319]"><Link className="hover:text-[#ee6145]" href={`/jobs/${encodeURIComponent(job.key)}`}>{job.title}</Link></h3><p className="mt-1 text-sm text-[#657064]">{job.location || "成都"} · {job.function || "职能待补充"} · {job.recruitmentType || "招聘类型待补充"}</p></div><Link href={`/jobs/${encodeURIComponent(job.key)}`} className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#ded8cd] px-4 text-sm font-extrabold text-[#236b5a] hover:border-[#236b5a]">查看线索</Link></article>)}
             {companyJobs.length === 0 && <div className="rounded-[24px] border border-dashed border-[#c9c1b4] bg-[#fffdfa] p-7 text-sm leading-6 text-[#657064]">该企业的招聘入口已收录，但当前还没有可展示的职位样本{company.chengduRoleStatus === "未知" ? "，成都岗位是否仍在招聘待确认" : ""}。你可以直接前往已收录来源查看实时信息。</div>}
           </div>
         </section>
@@ -105,4 +105,3 @@ export default async function CompanyPage({ params }: { params: Promise<{ compan
     </>
   );
 }
-

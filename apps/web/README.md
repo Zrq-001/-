@@ -1,14 +1,14 @@
 # 蓉小招：成都企业招聘入口聚合
 
-这是蓉小招的第一版可运行网站。它以成都为范围，优先整理企业官网、企业专属招聘系统（ATS）和集团招聘入口，并保留来源类型、验证状态和最近验证日期。
+这是蓉小招的成都企业招聘入口聚合网站（V1.6）。它以成都为范围，优先整理企业官网、企业专属招聘系统（ATS）和集团招聘入口，并保留来源类型、验证状态和最近验证日期。
 
 ## 当前数据范围
 
-- 数据版本：V1.4
-- 最近验证：2026-09-28
-- 企业：244 家
-- 官方有效招聘入口：79 个
-- 职位样本：351 条，其中 108 条可直接前往职位详情
+- 数据版本：V1.6
+- 最近验证：2026-10-09
+- 企业：362 家
+- 官方有效招聘入口：115 个
+- 职位样本：726 条，其中 112 条可直达职位详情；24 条第三方/待核验线索会单独标注
 
 > 职位样本不代表企业全部在招岗位；投递前请以企业官网当前页面为准。
 
@@ -62,39 +62,24 @@ pnpm build
 
 ## 数据更新
 
-原始 CSV 文件位于：
+当前正式源文件：
 
 ```text
-data/source/成都企业池_V1.4.csv
-data/source/成都职位样本_V1.4.csv
+data/source/成都企业池_V1.6.csv
+data/source/成都职位样本_V1.6.csv
 ```
 
-网站读取的静态目录由下面命令生成并检查：
+本次 WorkBuddy 原始输出保存在 `data/incoming/AUTO_2026-10-09/`，用于审计；发布源由 `scripts/prepare-auto-v16-release.mjs` 保守生成。发布前应执行：
 
 ```powershell
-pnpm data:verify:v14
+pnpm release:check:v16
 ```
 
-不要直接编辑 `src/data/catalog.json`。完整字段、发布流程与来源复核机制见 [data/README.md](data/README.md)。
-收到 WorkBuddy 的新一轮数据后，先不要直接覆盖现有目录。将数据放入 `data/incoming/V1.4`（或通过 `--input` 指定目录），先运行只读预检查：
-
-```powershell
-pnpm data:preflight -- --version=V1.4
-# 外部目录示例
-pnpm data:preflight -- --input="C:\path\to\V1.4" --version=V1.4
-```
-
-预检查会输出企业、职位的当前数量、疑似新增数量、重复项、缺失字段、无效链接和孤儿职位，并生成 `data/generated/data-preflight-V1.4.json`。只有错误为 0 时，才进入正式合并和 `pnpm data:verify:v14`。
-
-导入器也支持按版本读取源文件，例如：
-
-```powershell
-pnpm data:import -- --version=V1.4
-```
+该命令会生成 V1.6 源 CSV、重建 `catalog.json`，再执行数据校验、健康检查、lint 和生产构建。不要直接编辑 `src/data/catalog.json`；第三方/待核验线索会明确标注，不能当作企业官方发布。完整字段和规则见 [data/README.md](data/README.md)。
 
 ## 下一阶段
 
-当前 V1.4 已完成保守合并：仅公开官方来源企业与地点已确认的职位；无法确认的内容保留在 data/incoming/V1.4，等待下一轮人工证据。
+当前 V1.6 已完成首轮增量合并：企业目录保留官方招聘入口，职位样本区分官方岗位与第三方/待核验线索；无法确认官方招聘入口的记录暂不发布。
 
 当前版本仍以静态目录为前台数据源。已具备第一个受限的公开来源扫描器；下一步将把人工复核后的变化引入后台工作流，并逐步建立职位快照、状态历史、采集运行日志与错误记录。ATS 来源优先做低频适配，其他来源继续保留人工复核流程。
 
@@ -163,4 +148,3 @@ NEXT_PUBLIC_SITE_URL=https://你的正式域名
 - /sitemap.xml：确认企业与职位详情页已生成
 
 > `/ops`、`/ops/review` 和 `/ops/review-queue` 已支持可选的 Basic Auth。公开部署前请在环境变量中设置 `OPS_USER` 和 `OPS_PASSWORD`；未设置时仅适合本地开发，不要直接把运营后台暴露到互联网。
-

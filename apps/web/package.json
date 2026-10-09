@@ -22,7 +22,10 @@
     "data:prepare:v14": "node scripts/prepare-v14-release.mjs",
     "data:verify:v14": "pnpm data:import -- --version=V1.4 && pnpm data:check -- --version=V1.4 && pnpm data:review",
     "release:check:v14": "pnpm data:prepare:v14 && pnpm data:verify:v14 && pnpm data:health && pnpm lint && pnpm build",
-    "release:check": "pnpm data:prepare:v13 && pnpm data:verify && pnpm data:health && pnpm lint && pnpm build"
+    "release:check": "pnpm data:prepare:v13 && pnpm data:verify && pnpm data:health && pnpm lint && pnpm build",
+    "data:prepare:v16": "node scripts/prepare-auto-v16-release.mjs",
+    "release:check:v16": "pnpm data:prepare:v16 && pnpm data:verify:v16 && pnpm data:health && pnpm lint && pnpm build",
+    "data:verify:v16": "pnpm data:import -- --version=V1.6 && pnpm data:check -- --version=V1.6 && pnpm data:review"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

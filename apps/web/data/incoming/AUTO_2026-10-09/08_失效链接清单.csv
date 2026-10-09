@@ -1,0 +1,17 @@
+﻿company_id,企业名称,招聘入口URL,失效类型,官网状态,复核结论,建议
+CD0004,成都数之联科技股份有限公司,https://unionbigdata.zhiye.com/,connection_failed,connection_failed,招聘入口(智业网子站)WebFetch未能连接/返回空内容，需人工复测；官网同为该子站，亦未能连接。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0005,成都迈克生物股份有限公司,https://maccura.zhiye.com/jobs,connection_failed,valid,招聘入口(智业网)未能打开，官网(www.maccura.com)可正常访问，建议更新招聘入口链接。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0011,成都艾尔平方文化传播有限公司,http://www.luheli.com/about.php?id=9,connection_failed,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0021,成都雨墨科技有限公司,http://www.yumoon.cn,changed,valid,入口与官网均返回“activation system connection is OK”系统提示页，已非招聘/企业内容，疑似站点失效或被替换，需人工确认。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0025,成都倍特药业股份有限公司,https://btyy.zhiye.com/social/jobs,connection_failed,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0026,成都康弘药业集团股份有限公司,https://kanghong.zhiye.com/campus/jobs,connection_failed,valid,招聘入口(智业网)未能打开，官网(www.cnkh.com)可访问且含招聘栏目，建议更新招聘入口。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0032,成都天马微电子有限公司,https://campus.tianma.cn/,connection_failed,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0044,滴滴出行科技有限公司成都分公司,https://talent.didiglobal.com/,connection_failed,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0052,成都新易盛通信科技股份有限公司,https://eoptolink.zhiye.com/campus/jobs,connection_failed,valid,招聘入口(智业网)未能打开，官网招聘栏目(www.eoptolink.com/about-us/careers)可正常访问，建议更新招聘入口。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0054,成都博彦软件技术有限公司,https://www.beyondsoft.com/joinus/employ-enroll.html,dead,valid,招聘入口页面返回404(Not Found)，原链接已失效；官网可访问，建议更新至正确招聘页。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0056,云从科技（成都）,http://jobs.cloudwalk.com/,connection_failed,valid,招聘入口返回403 Forbidden，访问被拒/需权限，需人工复测；官网(www.cloudwalk.com)可正常访问。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0057,成都振芯科技股份有限公司,http://www.corpro.cn/,connection_failed,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0058,成都海威华芯科技有限公司,http://hiwafer.com/company-news/184.html,dead,valid,招聘入口(具体新闻页)返回404已失效；官网可访问但显示登录页，疑似站点变更，需人工确认官网招聘栏目。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0059,成都可可豆动画影视有限公司,http://cocoaniworks.net/?p=6,connection_failed,connection_failed,官网与招聘入口均无法连接，WebFetch未能连接，需人工复测。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0060,成都索贝数码科技股份有限公司,https://sobey.zhiye.com,changed,valid,招聘入口可打开但显示“企业已暂停招聘”，招聘通道暂停；官网(www.sobey.com)可正常访问。,人工复测；若官网可访问则更新招聘入口链接，若整站失效则暂缓发布
+CD0062,天齐锂业股份有限公司,https://tianqilithium.zhiye.com,dead,valid,招聘入口返回"页面已经被移走"错误，招聘子站已不存在；官网(www.tianqilithium.com)可正常访问。,用户已确认失效，建议从正式数据移除（不再复测）

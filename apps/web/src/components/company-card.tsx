@@ -51,7 +51,7 @@ export function CompanyCard({ company, index }: { company: Company; index?: numb
             </Link>
           </h3>
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-[#eff1e9] px-2.5 py-1 text-xs font-extrabold text-[#4b5a4d]">{company.grade}级企业</span>
+            <span className="inline-flex items-center rounded-full bg-[#eff1e9] px-2.5 py-1 text-xs font-extrabold text-[#4b5a4d]">{company.grade ? `${company.grade}级企业` : "企业档案"}</span>
             <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-extrabold ${tone.badge}`}>
               {company.isOfficial ? <ShieldCheck className="size-3.5" /> : <CircleAlert className="size-3.5" />}
               {sourceLabel}
@@ -79,4 +79,3 @@ export function CompanyCard({ company, index }: { company: Company; index?: numb
     </article>
   );
 }
-
