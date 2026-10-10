@@ -6,7 +6,9 @@
     "companyCount": 362,
     "jobSampleCount": 726,
     "officialActiveCompanyCount": 115,
-    "directJobCount": 112
+    "directJobCount": 112,
+    "officialJobCount": 702,
+    "leadJobCount": 24
   },
   "companies": [
     {

@@ -7,7 +7,7 @@ import { ShareButton } from "@/components/share-button";
 import { SaveButton } from "@/components/save-button";
 import { SiteHeader } from "@/components/site-header";
 import { ViewTracker } from "@/components/view-tracker";
-import { companies, getCompany, getCompanyJobs } from "@/data/catalog";
+import { catalogMeta, companies, getCompany, getCompanyJobs } from "@/data/catalog";
 
 function sourceHost(url: string) {
   try {
@@ -87,7 +87,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ compan
             <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-[#e2dbd0] bg-[#e2dbd0] sm:grid-cols-2">
               <div className="bg-[#fffdfa] p-4"><p className="text-xs font-bold text-[#8a8d85]">成都办公地点</p><p className="mt-2 flex gap-2 text-sm font-bold text-[#334235]"><MapPin className="size-4 shrink-0 text-[#ee6145]" />{company.officeAddress || "待补充"}</p></div>
               <div className="bg-[#fffdfa] p-4"><p className="text-xs font-bold text-[#8a8d85]">招聘来源</p><p className="mt-2 flex gap-2 text-sm font-bold text-[#334235]"><Building2 className="size-4 shrink-0 text-[#236b5a]" />{company.careerSourceName || "待补充"} · {company.sourceType}</p></div>
-              <div className="bg-[#fffdfa] p-4"><p className="text-xs font-bold text-[#8a8d85]">最近核验</p><p className="mt-2 flex gap-2 text-sm font-bold text-[#334235]"><CalendarDays className="size-4 shrink-0 text-[#ee6145]" />{company.verifiedAt || "待补充"}</p></div>
+              <div className="bg-[#fffdfa] p-4"><p className="text-xs font-bold text-[#8a8d85]">最近核验</p><p className="mt-2 flex gap-2 text-sm font-bold text-[#334235]"><CalendarDays className="size-4 shrink-0 text-[#ee6145]" />{company.verifiedAt || "待补充"}（{company.verifiedAt === catalogMeta.verifiedAt ? "本轮核验" : "历史核验"}）</p></div>
               <div className="bg-[#fffdfa] p-4"><p className="text-xs font-bold text-[#8a8d85]">入口状态</p><p className="mt-2 text-sm font-bold text-[#334235]">{company.statusLabel}</p></div>
             </div>
             {company.notes && <div className="mt-6 rounded-2xl bg-[#edf3e4] p-4 text-sm leading-6 text-[#48594c]"><p className="font-extrabold text-[#236b5a]">收录说明</p><p className="mt-1">{company.notes}</p></div>}<div className="mt-5"><ReportIssueButton kind="企业" itemId={company.id} title={company.name} sourceUrl={company.careerUrl} verifiedAt={company.verifiedAt} /></div>

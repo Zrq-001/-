@@ -168,6 +168,8 @@ const catalog = {
       (company) => company.recordCategory === "official_active",
     ).length,
     directJobCount: jobs.filter((job) => job.isDirectDetail).length,
+    officialJobCount: jobs.filter((job) => job.isOfficial).length,
+    leadJobCount: jobs.filter((job) => !job.isOfficial).length,
   },
   companies,
   jobs,

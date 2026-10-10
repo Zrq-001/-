@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Building2, CalendarDays, CircleAlert, MapPin, ShieldCheck } from "lucide-react";
 import { SaveButton } from "@/components/save-button";
-import type { Company } from "@/data/catalog";
+import { catalogMeta, type Company } from "@/data/catalog";
+import { verificationLabel } from "@/lib/verification";
 
 const statusStyles: Record<string, string> = {
   active: "border-[#a7cfaa] bg-[#e5f2e4] text-[#285b35]",
@@ -74,7 +75,7 @@ export function CompanyCard({ company, index }: { company: Company; index?: numb
 
       <div className={`relative flex flex-col gap-2 border-t border-dashed border-[#d9d1c5] px-4 py-3 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-5 ${tone.bottom}`}>
         <span className={`inline-flex w-fit items-center rounded-full border px-2.5 py-1 font-extrabold ${statusStyles[company.status] ?? statusStyles.not_found}`}>{company.statusLabel}</span>
-        <p className="flex items-center gap-1.5 text-[#6d786e]"><CalendarDays className="size-3.5" />核验于 {company.verifiedAt || "待补充"} · {company.chengduRoleStatus === "未知" ? "成都岗位待确认" : company.jobSampleCount > 0 ? `${company.jobSampleCount} 条职位样本` : "暂无职位样本"}</p>
+        <p className="flex items-center gap-1.5 text-[#6d786e]"><CalendarDays className="size-3.5" />{verificationLabel(company.verifiedAt, catalogMeta.verifiedAt)} · {company.verifiedAt || "待补充"} · {company.chengduRoleStatus === "未知" ? "成都岗位待确认" : company.jobSampleCount > 0 ? `${company.jobSampleCount} 条职位样本` : "暂无职位样本"}</p>
       </div>
     </article>
   );
