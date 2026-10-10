@@ -33,7 +33,7 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
   const [functionName, setFunctionName] = useState(() => initialFilters.function ?? "全部职能");
   const [recruitmentType, setRecruitmentType] = useState(() => initialFilters.type ?? "全部招聘类型");
   const [directOnly, setDirectOnly] = useState(() => initialFilters.direct === "1");
-  const [officialOnly, setOfficialOnly] = useState(() => initialFilters.official === "1");
+  const [sourceMode, setSourceMode] = useState<"all" | "official" | "lead">(() => initialFilters.official === "1" ? "official" : initialFilters.official === "0" ? "lead" : "all");
   const [sortOrder, setSortOrder] = useState(() => initialFilters.sort ?? "priority");
   const [searchOpen, setSearchOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -56,11 +56,12 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
     if (functionName !== "全部职能") params.set("function", functionName);
     if (recruitmentType !== "全部招聘类型") params.set("type", recruitmentType);
     if (directOnly) params.set("direct", "1");
-    if (officialOnly) params.set("official", "1");
+    if (sourceMode === "official") params.set("official", "1");
+    if (sourceMode === "lead") params.set("official", "0");
     if (sortOrder !== "priority") params.set("sort", sortOrder);
     const href = `/jobs${params.size ? `?${params.toString()}` : ""}`;
     if (window.location.pathname + window.location.search !== href) window.history.replaceState(null, "", href);
-  }, [directOnly, functionName, officialOnly, query, recruitmentType, sortOrder]);
+  }, [directOnly, functionName, query, recruitmentType, sortOrder, sourceMode]);
 
   const functionOptions = useMemo(() => ["全部职能", ...Array.from(new Set(initialJobs.map((job) => job.function).filter(Boolean))).sort((a, b) => a.localeCompare(b, "zh-CN"))], [initialJobs]);
   const recruitmentOptions = useMemo(() => ["全部招聘类型", ...Array.from(new Set(initialJobs.map((job) => job.recruitmentType).filter(Boolean))).sort((a, b) => a.localeCompare(b, "zh-CN"))], [initialJobs]);
@@ -92,7 +93,7 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
         && (functionName === "全部职能" || job.function === functionName)
         && (recruitmentType === "全部招聘类型" || job.recruitmentType === recruitmentType)
         && (!directOnly || job.isDirectDetail)
-        && (!officialOnly || job.isOfficial);
+        && (sourceMode === "all" || (sourceMode === "official" ? job.isOfficial : !job.isOfficial));
     });
     return filtered.sort((a, b) => {
       if (sortOrder === "recent") return (b.verifiedAt || "").localeCompare(a.verifiedAt || "") || a.companyName.localeCompare(b.companyName, "zh-CN");
@@ -100,12 +101,12 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
       if (sortOrder === "title") return a.title.localeCompare(b.title, "zh-CN") || a.companyName.localeCompare(b.companyName, "zh-CN");
       return Number(b.isDirectDetail) - Number(a.isDirectDetail) || Number(b.isOfficial) - Number(a.isOfficial) || (b.verifiedAt || "").localeCompare(a.verifiedAt || "") || a.companyName.localeCompare(b.companyName, "zh-CN");
     });
-  }, [directOnly, functionName, initialJobs, officialOnly, query, recruitmentType, sortOrder]);
+  }, [directOnly, functionName, initialJobs, query, recruitmentType, sortOrder, sourceMode]);
 
   const visibleJobs = jobs.slice(0, visibleCount);
 
-  const hasFilters = Boolean(query) || functionName !== "全部职能" || recruitmentType !== "全部招聘类型" || directOnly || officialOnly || sortOrder !== "priority";
-  const reset = () => { setQuery(""); setFunctionName("全部职能"); setRecruitmentType("全部招聘类型"); setDirectOnly(false); setOfficialOnly(false); setSortOrder("priority"); setSearchOpen(false); };
+  const hasFilters = Boolean(query) || functionName !== "全部职能" || recruitmentType !== "全部招聘类型" || directOnly || sourceMode !== "all" || sortOrder !== "priority";
+  const reset = () => { setQuery(""); setFunctionName("全部职能"); setRecruitmentType("全部招聘类型"); setDirectOnly(false); setSourceMode("all"); setSortOrder("priority"); setSearchOpen(false); };
   const chooseSuggestion = (value: string) => { setQuery(value); setSearchOpen(false); };
 
   return (
@@ -133,7 +134,7 @@ export function JobDirectory({ initialJobs, initialFilters = {} }: { initialJobs
           <label className="sr-only" htmlFor="job-sort">排序方式</label><div className="relative"><ArrowDownUp className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#236b5a]" /><select id="job-sort" value={sortOrder} onChange={(event) => setSortOrder(event.target.value)} className="min-h-13 w-full appearance-none rounded-2xl border border-[#ded8cd] bg-[#fcfaf6] pl-10 pr-8 text-sm font-bold text-[#425244] outline-none focus:border-[#ee6145] focus:ring-4 focus:ring-[#ffe4dc]"><option value="priority">官方直达优先</option><option value="recent">最近核验</option><option value="company">按企业名称</option><option value="title">按职位名称</option></select></div>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-[#ded8cd] pt-4">
-          <div className="flex flex-wrap items-center gap-2"><span className="text-sm font-bold text-[#6c7169]">快速筛选：</span>{popularFunctions.map((item) => <button type="button" key={item} onClick={() => setFunctionName(functionName === item ? "全部职能" : item)} className={`rounded-full px-3 py-1.5 text-xs font-extrabold transition ${functionName === item ? "bg-[#e4f1e8] text-[#236b5a]" : "bg-[#f0ece4] text-[#657064] hover:bg-[#e7f0d6]"}`}>{functionName === item && <Check className="mr-1 inline size-3.5" />}{item}</button>)}<button type="button" onClick={() => setOfficialOnly((current) => !current)} aria-pressed={officialOnly} className={`inline-flex min-h-8 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-extrabold transition ${officialOnly ? "bg-[#236b5a] text-white" : "bg-[#eef3ed] text-[#42604d] hover:bg-[#dceee8]"}`}><ShieldCheck className="size-3.5" />只看官方来源</button></div>
+          <div className="flex flex-wrap items-center gap-2"><span className="text-sm font-bold text-[#6c7169]">快速筛选：</span>{popularFunctions.map((item) => <button type="button" key={item} onClick={() => setFunctionName(functionName === item ? "全部职能" : item)} className={`rounded-full px-3 py-1.5 text-xs font-extrabold transition ${functionName === item ? "bg-[#e4f1e8] text-[#236b5a]" : "bg-[#f0ece4] text-[#657064] hover:bg-[#e7f0d6]"}`}>{functionName === item && <Check className="mr-1 inline size-3.5" />}{item}</button>)}<div className="inline-flex items-center rounded-full bg-[#eef3ed] p-1 text-xs font-extrabold text-[#42604d]" aria-label="来源筛选"><button type="button" onClick={() => setSourceMode("all")} aria-pressed={sourceMode === "all"} className={`rounded-full px-3 py-1.5 transition ${sourceMode === "all" ? "bg-white text-[#236b5a] shadow-sm" : "hover:bg-[#dceee8]"}`}>全部 {initialJobs.length}</button><button type="button" onClick={() => setSourceMode("official")} aria-pressed={sourceMode === "official"} className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 transition ${sourceMode === "official" ? "bg-[#236b5a] text-white shadow-sm" : "hover:bg-[#dceee8]"}`}><ShieldCheck className="size-3.5" />官方 {catalogMeta.officialJobCount}</button><button type="button" onClick={() => setSourceMode("lead")} aria-pressed={sourceMode === "lead"} className={`rounded-full px-3 py-1.5 transition ${sourceMode === "lead" ? "bg-[#a7710e] text-white shadow-sm" : "hover:bg-[#f7e4bd]"}`}>线索 {catalogMeta.leadJobCount}</button></div></div>
           <CopyLinkButton />{hasFilters && <button type="button" onClick={reset} className="inline-flex min-h-9 items-center gap-1.5 rounded-full px-3 text-sm font-bold text-[#c94a34] hover:bg-[#fff0ec]"><X className="size-4" />清空条件</button>}
         </div>
       </div>
